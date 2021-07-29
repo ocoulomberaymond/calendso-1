@@ -64,7 +64,15 @@ export default function Troubleshoot({ user }) {
               {availability.map((slot) => (
                 <div key={slot.start} className="bg-gray-100 overflow-hidden rounded-lg">
                   <div className="px-4 py-5 sm:p-6 text-gray-600">
-                    Your calendar shows you as busy between <span className="font-medium text-gray-800" title={slot.start}>{dayjs(slot.start).format("HH:mm")}</span> and <span className="font-medium text-gray-800" title={slot.end}>{dayjs(slot.end).format("HH:mm")}</span> on {dayjs(slot.start).format("D MMMM YYYY")}
+                    Your calendar shows you as busy between{" "}
+                    <span className="font-medium text-gray-800" title={slot.start}>
+                      {dayjs(slot.start).format("HH:mm")}
+                    </span>{" "}
+                    and{" "}
+                    <span className="font-medium text-gray-800" title={slot.end}>
+                      {dayjs(slot.end).format("HH:mm")}
+                    </span>{" "}
+                    on {dayjs(slot.start).format("D MMMM YYYY")}
                   </div>
                 </div>
               ))}

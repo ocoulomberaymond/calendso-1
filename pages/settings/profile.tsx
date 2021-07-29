@@ -86,16 +86,18 @@ export default function Settings(props) {
       .catch((err) => {
         setHasErrors(true);
         setErrorMessage(err.message);
-        console.log(JSON.stringify({
-          username: enteredUsername,
-          name: enteredName,
-          description: enteredDescription,
-          avatar: enteredAvatar,
-          timeZone: enteredTimeZone,
-          weekStart: enteredWeekStartDay,
-          hideBranding: enteredHideBranding,
-          theme: selectedTheme ? selectedTheme.value : null,
-        }));
+        console.log(
+          JSON.stringify({
+            username: enteredUsername,
+            name: enteredName,
+            description: enteredDescription,
+            avatar: enteredAvatar,
+            timeZone: enteredTimeZone,
+            weekStart: enteredWeekStartDay,
+            hideBranding: enteredHideBranding,
+            theme: selectedTheme ? selectedTheme.value : null,
+          })
+        );
       });
   }
 

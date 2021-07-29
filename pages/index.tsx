@@ -18,10 +18,10 @@ export default function Home(props) {
   }
 
   function convertMinsToHrsMins(mins) {
-    let h:number = Math.floor(mins / 60);
-    let m:number = mins % 60;
-    let hours = h < 10 ? "0" + h : h;
-    let minutes = m < 10 ? "0" + m : m;
+    const h: number = Math.floor(mins / 60);
+    const m: number = mins % 60;
+    const hours = h < 10 ? "0" + h : h;
+    const minutes = m < 10 ? "0" + m : m;
     return `${hours}:${minutes}`;
   }
 
@@ -318,12 +318,12 @@ export default function Home(props) {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  let user:User = []; //works for some reason
+  let user: User = []; //works for some reason
   let credentials = [];
   let eventTypes = [];
 
   if (session) {
-    user = await prisma.user.findFirst({
+    user = (await prisma.user.findFirst({
       where: {
         email: session.user.email,
       },
@@ -332,7 +332,7 @@ export async function getServerSideProps(context) {
         startTime: true,
         endTime: true,
       },
-    }) as User;
+    })) as User;
 
     credentials = await prisma.credential.findMany({
       where: {

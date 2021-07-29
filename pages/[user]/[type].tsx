@@ -264,8 +264,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
       },
     ].filter((availability): boolean => typeof availability["days"] !== "undefined");
 
-  workingHours.sort((a:User, b:User) => a.startTime - b.startTime);
-  
+  workingHours.sort((a: User, b: User) => a.startTime - b.startTime);
 
   const eventTypeObject = Object.assign({}, eventType, {
     periodStartDate: eventType.periodStartDate?.toString() ?? null,

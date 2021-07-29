@@ -81,7 +81,9 @@ export default function Book(props: any): JSX.Element {
 
       const payload = {
         start: dayjs(date as string).format(),
-        end: dayjs(date as string).add(props.eventType.length, "minute").format(),
+        end: dayjs(date as string)
+          .add(props.eventType.length, "minute")
+          .format(),
         name: event.target.name.value,
         email: event.target.email.value,
         notes: notes,
