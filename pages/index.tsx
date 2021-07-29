@@ -5,6 +5,7 @@ import Shell from "../components/Shell";
 import { getSession, useSession } from "next-auth/client";
 import { CheckIcon, ClockIcon, InformationCircleIcon } from "@heroicons/react/outline";
 import DonateBanner from "../components/DonateBanner";
+import { User } from "@prisma/client";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -17,11 +18,11 @@ export default function Home(props) {
   }
 
   function convertMinsToHrsMins(mins) {
-    let h = Math.floor(mins / 60);
-    let m = mins % 60;
-    h = h < 10 ? "0" + h : h;
-    m = m < 10 ? "0" + m : m;
-    return `${h}:${m}`;
+    let h:number = Math.floor(mins / 60);
+    let m:number = mins % 60;
+    let hours = h < 10 ? "0" + h : h;
+    let minutes = m < 10 ? "0" + m : m;
+    return `${hours}:${minutes}`;
   }
 
   const stats = [
@@ -317,7 +318,7 @@ export default function Home(props) {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  let user = [];
+  let user:User = []; //works for some reason
   let credentials = [];
   let eventTypes = [];
 
@@ -331,7 +332,7 @@ export async function getServerSideProps(context) {
         startTime: true,
         endTime: true,
       },
-    });
+    }) as User;
 
     credentials = await prisma.credential.findMany({
       where: {

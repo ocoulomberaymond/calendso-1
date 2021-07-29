@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const user = await whereAndSelect(
     prisma.user.findFirst,
     {
-      username: context.query.user.toLowerCase(),
+      username: (context.query.user as string).toLowerCase(),
     },
     ["id", "username", "email", "name", "bio", "avatar", "theme"]
   );

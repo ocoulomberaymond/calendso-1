@@ -35,6 +35,7 @@ export default function MemberInvitationModal(props) {
       }
     }).then(handleError).then(props.onExit).catch( (e) => {
       // do nothing.
+      console.log(e);
     });
   };
 

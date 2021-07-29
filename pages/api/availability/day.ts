@@ -17,7 +17,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const updateDay = await prisma.user.update({
             where: {
-                id: session.user.id,
+                //id: session.user.id,
+                email: session.user.email
             },
             data: {
                 startTime: startMins,

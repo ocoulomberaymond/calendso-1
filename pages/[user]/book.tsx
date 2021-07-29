@@ -80,8 +80,8 @@ export default function Book(props: any): JSX.Element {
       }
 
       const payload = {
-        start: dayjs(date).format(),
-        end: dayjs(date).add(props.eventType.length, "minute").format(),
+        start: dayjs(date as string).format(),
+        end: dayjs(date as string).add(props.eventType.length, "minute").format(),
         name: event.target.name.value,
         email: event.target.email.value,
         notes: notes,
@@ -174,7 +174,7 @@ export default function Book(props: any): JSX.Element {
                 <p className="text-blue-600 mb-4">
                   <CalendarIcon className="inline-block w-4 h-4 mr-1 -mt-1" />
                   {preferredTimeZone &&
-                    dayjs(date)
+                    dayjs(date as string)
                       .tz(preferredTimeZone)
                       .format((is24h ? "H:mm" : "h:mma") + ", dddd DD MMMM YYYY")}
                 </p>

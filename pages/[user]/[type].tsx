@@ -14,8 +14,9 @@ import { timeZone } from "../../lib/clock";
 import DatePicker from "../../components/booking/DatePicker";
 import PoweredByCalendso from "../../components/ui/PoweredByCalendso";
 import Theme from "@components/Theme";
+import { User } from "@prisma/client";
 
-export default function Type(props): Type {
+export default function Type(props): any {
   // Get router variables
   const router = useRouter();
   const { rescheduleUid } = router.query;
@@ -195,7 +196,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
   const user = await whereAndSelect(
     prisma.user.findFirst,
     {
-      username: context.query.user.toLowerCase(),
+      username: (context.query.user as string).toLowerCase(),
     },
     [
       "id",
@@ -263,7 +264,8 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
       },
     ].filter((availability): boolean => typeof availability["days"] !== "undefined");
 
-  workingHours.sort((a, b) => a.startTime - b.startTime);
+  workingHours.sort((a:User, b:User) => a.startTime - b.startTime);
+  
 
   const eventTypeObject = Object.assign({}, eventType, {
     periodStartDate: eventType.periodStartDate?.toString() ?? null,
